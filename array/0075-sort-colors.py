@@ -60,21 +60,20 @@ class Solution:
     def sortColors(self, nums):
         k = 0
         j = len(nums) - 1
-        i = 0
-        while i < j:
+        for i in range(len(nums)):
+            print(nums)
             if nums[i] == 0:
                 nums[i],nums[k] = nums[k],nums[i]
                 k += 1
-            elif nums[i] == 1:
-
-            else:
+            elif nums[i] == 2:
                 nums[i],nums[j] = nums[j],nums[i]
                 j -= 1
-
         return nums
 
+class Solution:
     def sortColors(self, nums):
         l = len(nums)
+
         # 循环不变量的定义：
         # [0, zero] 中的元素全部等于 0
         # (zero, i) 中的元素全部等于 1
@@ -84,6 +83,7 @@ class Solution:
         i = 0  # 马上要看的位置
 
         while i < two:
+            print(i,nums)
             if nums[i] == 0:
                 zero += 1
                 nums[zero], nums[i] = nums[i], nums[zero]
@@ -94,5 +94,5 @@ class Solution:
                 two -= 1
                 nums[two], nums[i] = nums[i], nums[two]
 
-nums = [2,0,2,1,1,0]
+nums = [2,0,2,1,1,2]
 print(Solution().sortColors(nums))
