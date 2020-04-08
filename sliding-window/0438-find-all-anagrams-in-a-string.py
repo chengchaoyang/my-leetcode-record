@@ -94,8 +94,8 @@ class Solution:
             if distance == 0:
                 res.append(l)
             if r - l == plen:
+                #不在p中的元素，个数为负数
                 if hash[s[l]] >= 0:
-                    #
                     distance += 1
                 hash[s[l]] += 1
                 l += 1
