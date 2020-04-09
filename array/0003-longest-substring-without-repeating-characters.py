@@ -20,27 +20,12 @@ https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
 """
 
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        hash = {}
-        max_size = 0
-        begin = -1
-        for i,t in enumerate(s):
-            if t not in hash:
-                max_size = max(i - begin, max_size)
-            else:
-                begin = hash[t]+1
-                max_size = max(i - begin, max_size)
-            hash[t] = i
-            print(max_size)
-            print(hash)
-        return max_size
-
-class Solution:
     def lengthOfLongestSubstring(self, s):
         """
         :type s: str
         :rtype: int
         """
+
         # 特判
         size = len(s)
         if size < 2:
@@ -63,7 +48,6 @@ class Solution:
                 l += 1
             res = max(res, r - l + 1)
         return res
-
 
 s =  "abba"
 print(Solution().lengthOfLongestSubstring(s))
