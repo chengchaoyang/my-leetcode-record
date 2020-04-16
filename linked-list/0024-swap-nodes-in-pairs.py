@@ -19,5 +19,9 @@ class ListNode:
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
         if head is None or head.next is None:
-            return None
-        
+            return head
+        nextNode = head.next
+        head.next = self.swapPairs(nextNode.next)
+        nextNode.next = head
+        return nextNode
+
