@@ -16,8 +16,6 @@
 输入: -1->5->3->4->0
 输出: -1->0->3->4->5
 """
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -25,6 +23,9 @@ class ListNode:
         self.next = None
 
 class Solution:
+    """
+    超出时间限制
+    """
     def insertionSortList(self, head: ListNode) -> ListNode:
         if head is None:
             return head
@@ -36,40 +37,42 @@ class Solution:
             sort_node = dummy_node
             insert_node = ListNode(cur.val)
             while sort_node.next:
-                if cur.val == 3:
-                    node = dummy_node
-                    while node:
-                        print(node.val)
-                        node = node.next
                 if sort_node.next.val > cur.val:
-                    dummy_node.next = insert_node
+                    # 会发生死循环,先修改了dummy_node的下一个指针的值，sort_node.next就会一直是修改后的值，造成死循环
+                    # dummy_node.next = insert_node
+                    # insert_node.next = sort_node.next
                     insert_node.next = sort_node.next
+                    dummy_node.next = insert_node
                     break
                 else:
                     if sort_node.next.next:
                         nexts = sort_node.next.next
                         if cur.val <= nexts.val:
-                            sort_node.next = insert_node
                             insert_node.next = nexts
+                            sort_node.next.next = insert_node
                             break
                         else:
                             sort_node = sort_node.next
                             #print(sort_node.val)
                     else:
-                        sort_node.next = insert_node
+                        sort_node.next.next = insert_node
                         break
             cur = cur.next
         return dummy_node.next
 
 
-
-a = ListNode(4)
-b = ListNode(2)
-c = ListNode(1)
-d = ListNode(3)
+a = ListNode(-1)
+b = ListNode(5)
+c = ListNode(3)
+d = ListNode(4)
+f = ListNode(0)
 a.next = b
 b.next = c
 c.next = d
-d.next = None
+d.next = f
 print(a)
-print(Solution().insertionSortList(a))
+e = Solution().insertionSortList(a)
+cur = e
+while cur:
+    print(cur.val)
+    cur = cur.next
