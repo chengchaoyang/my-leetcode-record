@@ -24,6 +24,7 @@ class Solution:
         """
         :type s: str
         :rtype: int
+        滑窗法求解
         """
 
         # 特判
