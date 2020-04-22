@@ -38,7 +38,7 @@ class Solution:
                 head = head.next
             if not flag:
                 break
-            # 上次翻转后的节点连接这次翻转后的节点
+            # 上次翻转后的节点连接这次翻转后的节点,翻转包括start，不包括end
             pre.next = self.reverse(start,head)
             # 连接这次翻转以后的正常节点
             start.next = head
