@@ -61,6 +61,38 @@ class Solution:
         return dummy_node.next
 
 
+class Solution:
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        if head is None:
+            return None
+        dummy_node = ListNode(-1)
+        dummy_node.next = head
+        cur = head
+        while True:
+            #  如果遍历下去，是顺序排列的话，那最简单了，curNode
+            # 指针向前就行了
+            #  这一步是一个循环的过程
+            #  暂存当前结点的下一结点
+            while cur.next != None and cur.val <= cur.next.val:
+                cur = cur.next
+            if cur.next == None:
+                break
+            else:
+                #否则就一定满足 curNode.val > curNode.next.val; 为真
+                #  pre 打回到起点
+                pre = dummy_node
+                next = cur.next
+                while pre.next.val < next.val:
+                    pre = pre.next
+                #穿针引线
+                cur.next = next.next
+                next.next = pre.next
+                pre.next = next
+        return dummy_node.next
+
+
+
+
 a = ListNode(-1)
 b = ListNode(5)
 c = ListNode(3)
