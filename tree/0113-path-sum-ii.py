@@ -58,10 +58,10 @@ class Solution:
         res = []
         if root is None:
             return res
-        self.__helper(root, [], sum, res)
+        self.__dfs(root, [], sum, res)
         return res
 
-    def __helper(self, node, path, sum, res):
+    def __dfs(self, node, path, sum, res):
         # 递归，就应该先写递归终止条件
         if node is None:
             return
