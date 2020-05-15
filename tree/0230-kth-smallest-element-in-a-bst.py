@@ -38,10 +38,20 @@ class TreeNode:
 
 class Solution:
     def kthSmallest(self, root: TreeNode, k: int) -> int:
-
-    def __dfs(self,root,k):
         if root is None:
-            return
-        self.__dfs(root.left,k-1)
-        if k == 0:
-            return root.val
+            return None
+        self.flag = 0
+        self.res = None
+        def helper(root,k):
+            if root is None:
+                return
+            if root.left:
+                helper(root.left,k)
+            self.flag += 1
+            if self.flag == k:
+                self.res = root.val
+                return
+            if root.right:
+                helper(root.right,k)
+        helper(root,k)
+        return self.res
