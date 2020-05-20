@@ -45,4 +45,27 @@ class Solution:
             arr[start] = chr(ord(arr[start]) ^ (1 << 5))
             self.__dfs(arr, size, start + 1, res)
 
-print(Solution().letterCasePermutation("C"))
+
+class Solution:
+    def letterCasePermutation(self, S: str) -> List[str]:
+        size = len(S)
+        res = []
+        if size == 0:
+            return res
+        arr = list(S)
+        def dfs(arr,start):
+            if start == size:
+                res.append("".join(arr))
+                return
+            dfs(arr,start+1)
+            if arr[start].isalpha():
+                if arr[start].islower():
+                    arr[start] = arr[start].upper()
+                    dfs(arr,start+1)
+                else:
+                    arr[start] = arr[start].lower()
+                    dfs(arr, start + 1)
+        dfs(arr,0)
+        return res
+
+print(Solution().letterCasePermutation("a1b2"))

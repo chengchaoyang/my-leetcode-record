@@ -51,7 +51,6 @@ class Solution(object):
                 if not used[i]:
                     if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
                         continue
-
                     used[i] = True
                     path.append(nums[i])
                     dfs(nums, size, path, used, res)
@@ -63,10 +62,9 @@ class Solution(object):
             return []
 
         nums.sort()
-
         used = [False] * len(nums)
         res = []
         dfs(nums, size, [], used, res)
         return res
 
-print(Solution().permuteUnique([1,1,1,2]))
+print(Solution().permuteUnique([1, 1, 1, 2]))
