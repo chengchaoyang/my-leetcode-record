@@ -31,9 +31,13 @@ class Solution:
             res.append('.'.join(path))
             return
 
-        # 重要操作：剪枝
-        if size - begin < (4 - splits) or size - begin > 3 * (4 - splits):
+        # 重要操作：剪枝,size - begin 剩余的字符串，4 - splits剩余的组数
+        remain_chars = size - begin
+        remain_splits = 4 - splits
+        if remain_chars < remain_splits or remain_chars > 3*remain_splits:
             return
+        # if size - begin < (4 - splits) or size - begin > 3 * (4 - splits):
+        #     return
 
         for i in range(1, 4):
             # 注意：这里是严格大于号，看 s[begin:begin + i] 表达式就清楚
