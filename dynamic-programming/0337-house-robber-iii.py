@@ -42,21 +42,22 @@ class TreeNode:
         self.right = None
 
 class Solution:
+    """
+    太多重复计算，超出时间
+    """
     def rob(self, root: TreeNode) -> int:
         sum = 0
         if root is None:
             return sum
-        sum1 = 0
-        sum2 = 0
-        sum1 += self.rob(root.left) + self.rob(root.right)
+        sum1 = self.rob(root.left) + self.rob(root.right)
         if root.left and root.right:
-            sum2 += root.val + self.rob(root.left.left) + self.rob(root.right.right)
+            sum2 = root.val + self.rob(root.left.left) + self.rob(root.left.right) + self.rob(root.right.right) + self.rob(root.right.left)
         elif root.left and not root.right:
-            sum2 += root.val + self.rob(root.left.left)
+            sum2 = root.val + self.rob(root.left.left) + self.rob(root.left.right)
         elif not root.left and  root.right:
-            sum2 += root.val + self.rob(root.right.right)
+            sum2 = root.val + self.rob(root.right.right) + self.rob(root.right.left)
         else:
-            sum2 += root.val
+            sum2 = root.val
         return max(sum1,sum2)
 
 
